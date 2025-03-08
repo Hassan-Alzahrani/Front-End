@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  backend:
+    image: haaz77/anees-backend:v1  # Backend service image
+    container_name: backend
+    environment:
+      - API_BASE_URL=http://backend:8000/api
+    ports:
+      - "8000:8000"
+
+  flutter-app:
+    image: haaz77/anees-frontend:v1  # Flutter frontend image
+    container_name: flutter-app
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    environment:
+      - API_BASE_URL=http://backend:8000/api
+

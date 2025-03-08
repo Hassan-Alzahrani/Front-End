@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService { 
-  final String baseUrl = "http://192.168.31.164:8000/api"; // تأكدي أنه صحيح
+  //final String baseUrl = "http://192.168.31.164:8000/api"; // تأكدي أنه صحيح
+  final String baseUrl = const String.fromEnvironment("API_BASE_URL", defaultValue: "http://localhost:8000/api");
 
   Future<Map<String, dynamic>> registerParent({
     required String username,

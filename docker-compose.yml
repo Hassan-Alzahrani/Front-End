@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ../Back-End
+      dockerfile: Dockerfile
+    container_name: backend
+    environment:
+      - API_BASE_URL=http://backend:8000/api
+    ports:
+      - "8000:8000"
+
+  flutter-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flutter-app
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    environment:
+      - API_BASE_URL=http://backend:8000/api
+
